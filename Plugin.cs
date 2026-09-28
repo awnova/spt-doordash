@@ -18,7 +18,8 @@ namespace tarkin.doordash
         internal static ConfigEntry<bool> BreachLocked;
 
         internal static ConfigEntry<float> VelocityThresholdSqr;
-        internal static ConfigEntry<float> RayDistance;
+        internal static ConfigEntry<float> SphereCastDistance;
+        internal static ConfigEntry<float> SphereCastRadius;
 
         internal static ConfigEntry<float> DislodgeChance;
         internal static ConfigEntry<float> DislodgeForce;
@@ -83,7 +84,8 @@ namespace tarkin.doordash
             BreachLocked = Config.Bind("Logic", "Breach Locked", false, new ConfigDescription("", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
 
             VelocityThresholdSqr = Config.Bind("Sprint Ram", "Velocity Threshold", 20f, new ConfigDescription("", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
-            RayDistance = Config.Bind("Sprint Ram", "Ray Distance", 0.7f, new ConfigDescription("", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
+            SphereCastDistance = Config.Bind("Sprint Ram", "SphereCastDistance", 0.7f, new ConfigDescription("", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
+            SphereCastRadius = Config.Bind("Sprint Ram", "SphereCastRadius", 0.35f, new ConfigDescription("", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
 
             DislodgeChance = Config.Bind("Physical Door", "Chance To Dislodge On Breach", 0.01f, new ConfigDescription("", null, new ConfigurationManagerAttributes { IsAdvanced = true }));
             DislodgeForce = Config.Bind("Physical Door", "Dislodge Force", 10f, new ConfigDescription("", null, new ConfigurationManagerAttributes { IsAdvanced = true }));

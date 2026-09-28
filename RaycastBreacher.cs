@@ -52,7 +52,7 @@ namespace tarkin.doordash
             Vector3 rayOrigin = player.Position + player.Transform.Original.TransformDirection(offsetFromPlayerFloor);
             Vector3 rayDirection = player.Transform.Original.forward;
 
-            if (Physics.SphereCast(rayOrigin, radius: 0.25f, rayDirection, out RaycastHit hit, Plugin.RayDistance.Value, DoorColliderMask))
+            if (Physics.SphereCast(rayOrigin, Plugin.SphereCastRadius.Value, rayDirection, out RaycastHit hit, Plugin.SphereCastDistance.Value, DoorColliderMask))
             {
                 var parent = hit.collider.transform.parent;
                 if (parent == null)

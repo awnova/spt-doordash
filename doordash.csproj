@@ -4,7 +4,7 @@
     <TargetFramework>net472</TargetFramework>
     <AssemblyName>tarkin.doordash</AssemblyName>
     <LangVersion>latest</LangVersion>
-    <Version>1.1.2</Version>
+    <Version>1.2.0</Version>
     <RootNamespace>tarkin.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 

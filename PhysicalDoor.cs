@@ -111,6 +111,8 @@ namespace tarkin.doordash
             trigger.isTrigger = true;
             colListener = colDamager.AddComponent<PlayerDamager>();
 
+            Utils.WaitSeconds(this, 1f, () => Destroy(colDamager));
+
             PhysicsExtensions.UpdateController.SupportRigidbody(rb, 0f);
 
             PlayBreachSound();
@@ -127,7 +129,8 @@ namespace tarkin.doordash
         // restore everything. used only for debugging for now.
         void OnDestroy()
         {
-            Destroy(colListener.gameObject);
+            if (colListener != null)
+                Destroy(colListener.gameObject);
             Destroy(rb);
             Destroy(box);
 

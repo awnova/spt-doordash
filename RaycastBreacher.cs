@@ -10,6 +10,10 @@ namespace tarkin.doordash
     {
         Player player;
 
+        // the player capsule collides with both of these layers
+        // BSG is inconsistent and the door collider might be on either of these layers
+        private static readonly LayerMask DoorColliderMask = LayerMask.GetMask("LowPolyCollider", "DoorLowPolyCollider");
+
         void Awake()
         {
             player = GetComponent<Player>();
@@ -48,13 +52,21 @@ namespace tarkin.doordash
             Vector3 rayOrigin = player.Position + player.Transform.Original.TransformDirection(offsetFromPlayerFloor);
             Vector3 rayDirection = player.Transform.Original.forward;
 
-            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, Plugin.RayDistance.Value, LayersMaskController.PlayerStaticDoorMask))
+            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, Plugin.RayDistance.Value, DoorColliderMask))
             {
-                Door door = hit.collider.transform.parent?.GetComponent<Door>();
+                var parent = hit.collider.transform.parent;
+                if (parent == null)
+                    return null;
 
+                Door door = parent.GetComponent<Door>();
                 if (door == null)
-                {
-                    door = hit.collider.transform.parent?.parent?.GetComponent<Door>(); // some doors have deeper colliders
+                { 
+                    // some doors have deeper colliders
+                    parent = parent.parent; 
+                    if (parent == null)
+                        return null;
+
+                    door = parent.GetComponent<Door>();
                     if (door == null)
                         return null;
                 }
